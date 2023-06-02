@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exam.board.dao.BoardDao">
+	<!-- BBS 글목록 태그 -->
+	<select id="boardListDao" resultType="com.exam.board.dto.BoardDto">
+		select * from board order by num desc
+	</select>
+	
+	<!-- BBS 글내용 태그 -->
+	<select id="boardViewDao" resultType="com.exam.board.dto.BoardDto">
+		select * from board where num = #{param1}
+	</select>
+	
+	<!-- BBS 글저장 태그 -->
+	<insert id="boardWriteDao" >
+			insert into board (writer, title, content)
+			values (#{param1}, #{param2}, #{param3})
+	</insert>
+
+	<!-- BBS 글삭제 태그 -->
+	<delete id="boardDeleteDao">
+			delete from board where num = #{param1}
+	</delete>
+	
+	<!-- BBS 글제목 검색 -->
+	<select id="boardSearch" resultType="com.exam.board.dto.BoardDto">
+		select * from board where title = #{param1}
+	</select>
+</mapper>
